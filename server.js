@@ -17,8 +17,8 @@ app.use(bodyParser.json());
 // Cors for cross origin allowance
 app.use(cors());
 
-// Initialize the main project folder
-app.use(express.static('website'));
+// Initialize the main project folder (connect server side to client side code)
+app.use(express.static('demo'));
 
 // Setup Server
 const port = 8000;
@@ -29,3 +29,15 @@ function listening() {
 }
 
 
+// ROUTING
+
+// handles GET requests from client
+app.get(`/`,(req, res) => {
+  // console.log(req);
+  res.send(projectData)
+})
+
+// handles POST requests from client
+app.post(`/`,(req, res) => {
+  projectData.push(req.body)
+})
