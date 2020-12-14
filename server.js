@@ -37,11 +37,14 @@ app.get(`/`, (req, res) => {
 });
 
 // handles POST requests from client
-app.post(`/addName`, addData);
+app.post(`/add`, addData);
 
 // add incoming data to our endpoint object
 function addData(req, res) {
+  res.send(`Post received`)
   const incomingData = req.body;
-  projectData.name = incomingData.name;
+  projectData.temperature = incomingData.temperature;
+  projectData.date = incomingData.date;
+  projectData.userFeeling = incomingData.userFeeling;
   console.log(projectData);
 }
