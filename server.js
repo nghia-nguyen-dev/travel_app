@@ -32,7 +32,7 @@ function listening() {
 /* ROUTING */
 
 // handles GET requests from client
-app.get(`/`, (req, res) => {
+app.get(`/retrieve`, (req, res) => {
   res.send(projectData);
 });
 
@@ -41,7 +41,7 @@ app.post(`/add`, addData);
 
 // add incoming data to our endpoint object
 function addData(req, res) {
-  res.send(`Post received`)
+  res.send(`success!`);
   const incomingData = req.body;
   projectData.temperature = incomingData.temperature;
   projectData.date = incomingData.date;

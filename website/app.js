@@ -7,7 +7,8 @@ function getCurrentDate() {
   return d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
 }
 
-// Post data function
+/* Main Functions */
+// Post data to server
 const postData = async (url = "", data = {}) => {
   const options = {
     method: "POST",
@@ -27,13 +28,23 @@ const postData = async (url = "", data = {}) => {
   }
 };
 
+// Get data from server
+const getData = async (url = "") => {
+  try {
+    const response = await fetch(url);
+    return response.json();
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+
 // Get weather data from API
-async function getWeatherInfo() {
+async function getWeather() {
   // Build url string
   const baseURL = `http://api.openweathermap.org/data/2.5/weather?zip=`;
   const zipCode = document.querySelector(`#zip`).value;
   const apiKey = `01230402996a2c0bcff6e0ba4ce12d17`;
-
+  // complete string
   const url = `${baseURL}${zipCode}&units=imperial&appid=${apiKey}`;
 
   try {
@@ -45,31 +56,49 @@ async function getWeatherInfo() {
   }
 }
 
-// Event listener
+/* Event listener */
 generateBtn.addEventListener(`click`, async () => {
   // get weather data
-  const weatherObject = await getWeatherInfo();
-  // extract temp
+  const weatherObject = await getWeather();
+  // extract temperature
   const temp = Math.round(weatherObject.main.temp);
 
-  // get date
+  // get current date
   const td = getCurrentDate();
 
   // get user's feeling
   const userFeeling = document.querySelector(`#feelings`).value;
 
+  // build object to be sent
   const data = {
     temperature: `${temp}°F`,
     date: td,
     userFeeling: userFeeling,
   };
 
-  const results = await postData(`/add`, data);
-  console.log(results);
+  // send data to server
+  const post = await postData(`/add`, data);
+
+  // check if post was successful
+  if (post === `success!`) {
+    updateEntry();
+  }
+
 });
 
 // Function to update most recent entry using data from server
 
 async function updateEntry() {
-  console.log("getting data from server");
+  const date = document.getElementById(`date`);
+  const temp = document.getElementById(`temp`);
+  const content = document.getElementById(`content`);
+
+  try {
+  const entry = await getData(`/retrieve`);
+  date.innerText = entry.date;
+  temp.innerText = entry.temperature;
+  content.innerText = entry.userFeeling;
+  } catch (error) {
+    console.log("error", error);
+  }
 }
