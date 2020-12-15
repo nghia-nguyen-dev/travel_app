@@ -32,9 +32,7 @@ function listening() {
 /* ROUTING */
 
 // handles GET requests from client
-app.get(`/retrieve`, (req, res) => {
-  res.send(projectData);
-});
+app.get(`/retrieve`, sendData);
 
 // handles POST requests from client
 app.post(`/add`, addData);
@@ -47,4 +45,8 @@ function addData(req, res) {
   projectData.date = incomingData.date;
   projectData.userFeeling = incomingData.userFeeling;
   console.log(projectData);
+}
+
+function sendData(req, res) {
+  res.send(projectData);
 }

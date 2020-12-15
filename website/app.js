@@ -24,7 +24,7 @@ const postData = async (url = "", data = {}) => {
     const response = await fetch(url, options);
     return response.text();
   } catch (error) {
-    console.log("error", error);
+    console.log(`error`, error);
   }
 };
 
@@ -34,7 +34,7 @@ const getData = async (url = "") => {
     const response = await fetch(url);
     return response.json();
   } catch (error) {
-    console.log("error", error);
+    console.log(`error`, error);
   }
 };
 
@@ -52,12 +52,11 @@ async function getWeather() {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log("error", error);
+    console.log(`error`, error);
   }
 }
 
-/* Event listener */
-generateBtn.addEventListener(`click`, async () => {
+async function clickHandler() {
   // get weather data
   const weatherObject = await getWeather();
   // extract temperature
@@ -83,22 +82,23 @@ generateBtn.addEventListener(`click`, async () => {
   if (post === `success!`) {
     updateEntry();
   }
+}
 
-});
+/* Event listener */
+generateBtn.addEventListener(`click`, clickHandler);
 
 // Function to update most recent entry using data from server
-
 async function updateEntry() {
   const date = document.getElementById(`date`);
   const temp = document.getElementById(`temp`);
   const content = document.getElementById(`content`);
 
   try {
-  const entry = await getData(`/retrieve`);
-  date.innerText = entry.date;
-  temp.innerText = entry.temperature;
-  content.innerText = entry.userFeeling;
+    const entry = await getData(`/retrieve`);
+    date.innerText = entry.date;
+    temp.innerText = entry.temperature;
+    content.innerText = entry.userFeeling;
   } catch (error) {
-    console.log("error", error);
+    console.log(`error`, error);
   }
 }
