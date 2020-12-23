@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 /* Global Variables */
 const generateBtn = document.querySelector(`#generate`);
 
@@ -43,7 +45,7 @@ async function getWeather() {
   // Build url string
   const baseURL = `http://api.openweathermap.org/data/2.5/weather?zip=`;
   const zipCode = document.querySelector(`#zip`).value;
-  const apiKey = `01230402996a2c0bcff6e0ba4ce12d17`;
+  const apiKey = process.env.API_KEY;
   // complete string
   const url = `${baseURL}${zipCode}&units=imperial&appid=${apiKey}`;
 
