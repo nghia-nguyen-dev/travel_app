@@ -5,6 +5,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
+    devServer: {
+        port: 8000
+      },
     entry: './src/client/entry.js',
     mode: 'development',
     devtool: 'source-map',
