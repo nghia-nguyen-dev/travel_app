@@ -3,6 +3,7 @@ const fetch = require("node-fetch");
 const express = require(`express`);
 const bodyParser = require(`body-parser`);
 const cors = require(`cors`);
+const getCoordinatess = require('./geonames')
 
 // Object to act as endpoint for all routes
 projectData = {};
@@ -37,7 +38,7 @@ app.get(`/retrieve`, sendData);
 
 // Handles POST requests from client
 app.post(`/add`, addData);
-app.post("/geonames", getWeather);
+app.post("/send", getCoordinatess);
 
 /* HANDLERS */
 
@@ -54,18 +55,4 @@ function sendData(req, res) {
 	res.send(projectData);
 }
 
-async function getWeather(req, res) {
-	const city = req.body.data;
-	// Build url string
-	const baseURL = `https://api.geonames.org/searchJSON?`;
-	const userName = process.env.userName;
-	const url = `${baseURL}q=${city}&username=${userName}`;
 
-	try {
-		const response = await fetch(url);
-		const data = await response.json();
-		res.send(data);
-	} catch (error) {
-		console.log(`error`, error);
-	}
-}

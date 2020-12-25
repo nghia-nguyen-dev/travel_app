@@ -3,70 +3,72 @@ const generateBtn = document.querySelector(`#generate`);
 
 /* Helper Functions */
 function getCurrentDate() {
-  const d = new Date();
-  return d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
+    const d = new Date();
+    return d.getMonth() + "." + d.getDate() + "." + d.getFullYear();
 }
 
 /* Main Functions */
 // Post data to server
 const postData = async (url = "", data = {}) => {
-  const options = {
-    method: "POST",
-    credentials: "same-origin",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    // Body data type must match "Content-Type" header
-    body: JSON.stringify({data}),
-  };
+    const options = {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        // Body data type must match "Content-Type" header
+        body: JSON.stringify({ data }),
+    };
 
-  try {
-    const response = await fetch(url, options);
-    return response.text();
-  } catch (error) {
-    console.log(`error`, error);
-  }
+    try {
+        const response = await fetch(url, options);
+        return response.text();
+    } catch (error) {
+        console.log(`error`, error);
+    }
 };
 
 // Get data from server
 const getData = async (url = "") => {
-  try {
-    const response = await fetch(url);
-    return response.json();
-  } catch (error) {
-    console.log(`error`, error);
-  }
+    try {
+        const response = await fetch(url);
+        return response.json();
+    } catch (error) {
+        console.log(`error`, error);
+    }
 };
 
 async function clickHandler() {
-  const city = document.querySelector(`#city`).value;
-  // get weather data
-  const res = await postData('http://localhost:8000/geonames', city);
-  // extract temperature
-  const weatherObject = await JSON.parse(res)
+    const city = document.querySelector(`#city`).value;
+    const date = document.querySelector(`#departure`).value;
+    const userInput = { city, date }
 
-  const temp = Math.round(weatherObject.main.temp);
+    // get weather data
+    const res = await postData('http://localhost:8000/send', userInput);
 
-  // get current date
-  const td = getCurrentDate();
+    // extract temperature
+    const weatherObject = await JSON.parse(res)
 
-  // get user's feeling
-  const userFeeling = document.querySelector(`#departure`).value;
+    // get current date
+    const td = getCurrentDate();
 
-  // build object to be sent
-  const data = {
-    temperature: `${temp}°F`,
-    date: td,
-    userFeeling: userFeeling,
-  };
+    // get user's feeling
+    const userFeeling = document.querySelector(`#departure`).value;
 
-  // send data to server
-  const post = await postData(`http://localhost:8000/add`, data);
+    // build object to be sent
+    const data = {
+        temperature: `${temp}°F`,
+        date: td,
+        userFeeling: userFeeling,
+    };
 
-  // check if post was successful
-  if (post === `success!`) {
-    updateEntry();
-  }
+    // send data to server
+    const post = await postData(`http://localhost:8000/add`, data);
+
+    // check if post was successful
+    if (post === `success!`) {
+        updateEntry();
+    }
 }
 
 /* Event listener */
@@ -74,18 +76,18 @@ generateBtn.addEventListener(`click`, clickHandler);
 
 // Function to update most recent entry using data from server
 async function updateEntry() {
-  const date = document.getElementById(`date`);
-  const temp = document.getElementById(`temp`);
-  const content = document.getElementById(`content`);
+    const date = document.getElementById(`date`);
+    const temp = document.getElementById(`temp`);
+    const content = document.getElementById(`content`);
 
-  try {
-    const entry = await getData(`http://localhost:8000/retrieve`);
-    date.innerText = entry.date;
-    temp.innerText = entry.temperature;
-    content.innerText = entry.userFeeling;
-  } catch (error) {
-    console.log(`error`, error);
-  }
+    try {
+        const entry = await getData(`http://localhost:8000/retrieve`);
+        date.innerText = entry.date;
+        temp.innerText = entry.temperature;
+        content.innerText = entry.userFeeling;
+    } catch (error) {
+        console.log(`error`, error);
+    }
 }
 
-export {clickHandler, generateBtn}
+export { clickHandler, generateBtn }
