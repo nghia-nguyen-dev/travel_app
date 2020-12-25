@@ -39,7 +39,7 @@ const getData = async (url = "") => {
 };
 
 async function clickHandler() {
-  const zipCode = document.querySelector(`#zip`).value;
+  const zipCode = document.querySelector(`#city`).value;
   // get weather data
   const res = await postData('http://localhost:8000/openWeatherMap', zipCode);
   // extract temperature
@@ -51,7 +51,7 @@ async function clickHandler() {
   const td = getCurrentDate();
 
   // get user's feeling
-  const userFeeling = document.querySelector(`#feelings`).value;
+  const userFeeling = document.querySelector(`#date`).value;
 
   // build object to be sent
   const data = {
