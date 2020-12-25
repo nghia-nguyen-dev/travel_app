@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 /* Global Variables */
 const generateBtn = document.querySelector(`#generate`);
 
@@ -19,7 +17,7 @@ const postData = async (url = "", data = {}) => {
       "Content-Type": "application/json",
     },
     // Body data type must match "Content-Type" header
-    body: JSON.stringify(data),
+    body: JSON.stringify({data}),
   };
 
   try {
@@ -40,28 +38,13 @@ const getData = async (url = "") => {
   }
 };
 
-// Get weather data from API
-async function getWeather() {
-  // Build url string
-  const baseURL = `http://api.openweathermap.org/data/2.5/weather?zip=`;
-  const zipCode = document.querySelector(`#zip`).value;
-  const apiKey = process.env.API_KEY;
-  // complete string
-  const url = `${baseURL}${zipCode}&units=imperial&appid=${apiKey}`;
-
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log(`error`, error);
-  }
-}
-
 async function clickHandler() {
+  const zipCode = document.querySelector(`#zip`).value;
   // get weather data
-  const weatherObject = await getWeather();
+  const res = await postData('/openWeatherMap', zipCode);
   // extract temperature
+  const weatherObject = await JSON.parse(res)
+
   const temp = Math.round(weatherObject.main.temp);
 
   // get current date
@@ -104,3 +87,5 @@ async function updateEntry() {
     console.log(`error`, error);
   }
 }
+
+export {clickHandler, generateBtn}
