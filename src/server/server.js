@@ -54,13 +54,12 @@ function sendData(req, res) {
 	res.send(projectData);
 }
 
-// Get weather data from API
 async function getWeather(req, res) {
-	const zipCode = req.body.data;
+	const city = req.body.data;
 	// Build url string
-	const baseURL = `http://api.openweathermap.org/data/2.5/weather?zip=`;
-	const apiKey = process.env.API_KEY;
-	const url = `${baseURL}${zipCode}&units=imperial&appid=${apiKey}`;
+	const baseURL = `https://api.geonames.org/searchJSON?`;
+	const userName = process.env.userName;
+	const url = `${baseURL}q=${city}&username=${userName}`;
 
 	try {
 		const response = await fetch(url);
