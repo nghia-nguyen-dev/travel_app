@@ -37,7 +37,7 @@ app.get(`/retrieve`, sendData);
 
 // Handles POST requests from client
 app.post(`/add`, addData);
-app.post("/openWeatherMap", getWeather);
+app.post("/geonames", getWeather);
 
 /* HANDLERS */
 
