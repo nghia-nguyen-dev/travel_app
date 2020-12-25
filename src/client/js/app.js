@@ -41,7 +41,7 @@ const getData = async (url = "") => {
 async function clickHandler() {
   const zipCode = document.querySelector(`#zip`).value;
   // get weather data
-  const res = await postData('/openWeatherMap', zipCode);
+  const res = await postData('http://localhost:8000/openWeatherMap', zipCode);
   // extract temperature
   const weatherObject = await JSON.parse(res)
 
@@ -61,7 +61,7 @@ async function clickHandler() {
   };
 
   // send data to server
-  const post = await postData(`/add`, data);
+  const post = await postData(`http://localhost:8000/add`, data);
 
   // check if post was successful
   if (post === `success!`) {
@@ -79,7 +79,7 @@ async function updateEntry() {
   const content = document.getElementById(`content`);
 
   try {
-    const entry = await getData(`/retrieve`);
+    const entry = await getData(`http://localhost:8000/retrieve`);
     date.innerText = entry.date;
     temp.innerText = entry.temperature;
     content.innerText = entry.userFeeling;
