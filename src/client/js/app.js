@@ -1,5 +1,5 @@
 /* Global Variables */
-const generateBtn = document.querySelector(`#generate`);
+// const generateBtn = document.querySelector(`#generate`);
 
 /* Helper Functions */
 function getCurrentDate() {
@@ -7,12 +7,18 @@ function getCurrentDate() {
 	return (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
 }
 
-function getDateDiff(tripDate) {
+function getDateDiff(date) {
 	const todaysDate = new Date(getCurrentDate());
-	const tripDate = new Date(tripDate);
-	const diffTime = Math.abs(tripDate - todaysDate);
+	const tripDate = new Date(date);
+	const diffTime = Math.abs(date - todaysDate);
 	const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 	return diffDays;
+}
+
+function validateDateFormat(date) {
+    const testCase = /(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d/;
+    const results = testCase.test(date);
+    return results;
 }
 
 /* Main Functions */
@@ -48,11 +54,15 @@ const getData = async (url = "") => {
 
 async function clickHandler() {
 	const city = document.querySelector(`#city`).value;
-	const departure = document.querySelector(`#departure`).value;
+	// const departure = document.querySelector(`#departure`).value;
+	const departure = `12/29/2020`;
 	const userInput = { city, departure };
 
-	// validate date input format (some form of regex handler)
-    validateInputDate()
+    // Check date format
+    if (!validateDateFormat(departure)) {
+        alert(`Date entered must be in the correct format of: MM/DD/YYYY`)
+        return;
+    }
 
 	// check how far trip date is from today's date
 	const dateDiff = getDateDiff(departure);
@@ -64,6 +74,10 @@ async function clickHandler() {
 		// get predicted forecast
 	}
 
+
+
+
+    
 	// get weather data
 	const res = await postData("http://localhost:8000/send", userInput);
 
