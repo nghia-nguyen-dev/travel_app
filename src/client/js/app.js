@@ -1,5 +1,5 @@
 /* Global Variables */
-// const generateBtn = document.querySelector(`#generate`);
+const generateBtn = document.querySelector(`#generate`);
 
 /* Helper Functions */
 function getCurrentDate() {
@@ -10,7 +10,7 @@ function getCurrentDate() {
 function getDateDiff(date) {
 	const todaysDate = new Date(getCurrentDate());
 	const tripDate = new Date(date);
-	const diffTime = Math.abs(date - todaysDate);
+	const diffTime = Math.abs(tripDate - todaysDate);
 	const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 	return diffDays;
 }
@@ -31,7 +31,7 @@ const postData = async (url = "", data = {}) => {
 			"Content-Type": "application/json",
 		},
 		// Body data type must match "Content-Type" header
-		body: JSON.stringify({ data }),
+		body: JSON.stringify(data),
 	};
 
 	try {
@@ -54,22 +54,23 @@ const getData = async (url = "") => {
 
 async function clickHandler() {
 	const city = document.querySelector(`#city`).value;
-	// const departure = document.querySelector(`#departure`).value;
-	const departure = `12/29/2020`;
+	const departure = document.querySelector(`#departure`).value;
+	// const departure = `12/29/2020`;
 	const userInput = { city, departure };
 
+   
     // Check date format
     if (!validateDateFormat(departure)) {
-        alert(`Date entered must be in the correct format of: MM/DD/YYYY`)
-        return;
+        return alert(`Date entered must be in the correct format of: MM/DD/YYYY`);
     }
-
+    
 	// check how far trip date is from today's date
 	const dateDiff = getDateDiff(departure);
-
+   
 	// if results is within a week
 	if (dateDiff <= 7) {
-		// get current forecast
+        // get current weather forecast
+        const res = await postData("http://localhost:8000/current", userInput);
 	} else {
 		// get predicted forecast
 	}
@@ -77,33 +78,30 @@ async function clickHandler() {
 
 
 
-    
-	// get weather data
-	const res = await postData("http://localhost:8000/send", userInput);
 
-	// extract temperature
-	const weatherObject = await JSON.parse(res);
+	// // extract temperature
+	// const weatherObject = await JSON.parse(res);
 
-	// get current date
-	const td = getCurrentDate();
+	// // get current date
+	// const td = getCurrentDate();
 
-	// get user's feeling
-	const userFeeling = document.querySelector(`#departure`).value;
+	// // get user's feeling
+	// const userFeeling = document.querySelector(`#departure`).value;
 
-	// build object to be sent
-	const data = {
-		temperature: `${temp}°F`,
-		date: td,
-		userFeeling: userFeeling,
-	};
+	// // build object to be sent
+	// const data = {
+	// 	temperature: `${temp}°F`,
+	// 	date: td,
+	// 	userFeeling: userFeeling,
+	// };
 
-	// send data to server
-	const post = await postData(`http://localhost:8000/add`, data);
+	// // send data to server
+	// const post = await postData(`http://localhost:8000/add`, data);
 
-	// check if post was successful
-	if (post === `success!`) {
-		updateEntry();
-	}
+	// // check if post was successful
+	// if (post === `success!`) {
+	// 	updateEntry();
+	// }
 }
 
 /* Event listener */
