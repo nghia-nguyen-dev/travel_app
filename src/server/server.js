@@ -38,7 +38,7 @@ app.get(`/retrieve`, sendData);
 
 // Handles POST requests from client
 app.post(`/add`, addData);
-app.post("/send", getCoordinatess);
+app.post("/current", getForecast);
 
 /* HANDLERS */
 
@@ -55,4 +55,10 @@ function sendData(req, res) {
 	res.send(projectData);
 }
 
-
+async function getForecast(req, res) {
+    console.log(req.body);
+    const {city, departure} = req.body
+    const coordData = await getCoordinatess(city);
+    console.log(coordData);
+    // use lng and lat to call weatherbit API
+}
