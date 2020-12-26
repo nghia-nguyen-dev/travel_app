@@ -4,7 +4,7 @@ const express = require(`express`);
 const bodyParser = require(`body-parser`);
 const cors = require(`cors`);
 const getCoordinatess = require('./geonames')
-const getForecast = require('./weatherbit')
+const { getCurrentForecast , getFutureForecast } = require('./weatherbit')
 
 // Object to act as endpoint for all routes
 projectData = {};
@@ -39,7 +39,7 @@ app.get(`/retrieve`, sendData);
 
 // Handles POST requests from client
 app.post(`/add`, addData);
-app.post("/current", callback);
+app.post("/send", callback);
 
 /* HANDLERS */
 
@@ -57,12 +57,28 @@ function sendData(req, res) {
 }
 
 async function callback(req, res) {
-    const { city, departure } = req.body
-    const coordData = await getCoordinatess(city);
+    const { city, currentForecast, dateDiff } = req.body
 
-    const { lng, lat } = coordData;
-    // use lng and lat to call weatherbit API
-    const res = await getForecast(lng, lat);
-    console.log(res.data[0].weather);
-    const forecast = res.data[0].weather;
+    // Get lng + lat base on city
+    const coordData = await getCoordinatess(city);
+    const { lng, lat, country } = coordData;
+    console.log(country);
+  
+    const data = {
+        lng,
+        lat,
+        dateDiff
+    }
+
+    let resForecast;
+
+    if (currentForecast) {
+        // Current
+        resForecast = await getCurrentForecast(data);
+    } else {
+        // Future
+        resForecast = await getFutureForecast(data);
+    }
+
+    res.send(resForecast);
 }
