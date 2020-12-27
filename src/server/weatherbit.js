@@ -12,7 +12,7 @@ async function getCurrentForecast(obj) {
             const json = await response.json();
             const weatherObj = json.data[0];
             return {
-                currentTemp: weatherObj.temp,
+                temp: weatherObj.temp,
                 description: weatherObj.weather.description,
             }
         } catch (error) {

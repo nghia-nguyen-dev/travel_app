@@ -96,10 +96,16 @@ async function clickHandler() {
 	try {
 		const res = await postData("http://localhost:8000/send", data);
 		const json = JSON.parse(res);
-		console.log(json);
+		if (data.currentForecast) {
+			displayCurrentWeather(json)
+		} else {
+			displayFutureWeather(json)
+		}
+		
 	} catch(error) {
 		console.log(error);
 	}
+
 
 
 }
@@ -107,14 +113,18 @@ async function clickHandler() {
 /* Event listener */
 generateBtn.addEventListener(`click`, clickHandler);
 
-async function displayWeatherInfo(weatherObj) {
-	const highTemp = document.querySelector(`.entry__high-temp`);
-	const lowTemp = document.querySelector(`.entry__high-low`);
-	const description = document.querySelector(`.entry__description`);
+function displayCurrentWeather(weatherObj) {
+	console.log(weatherObj);
+	const entryDatas = document.querySelectorAll(`.entry__data`);
+	entryDatas[0].textContent = `Temp: ${weatherObj.temp}`
+	entryDatas[1].textContent = weatherObj.description
+}
 
-	highTemp.textContent = weatherObj.high
-	lowTemp.textContent = weatherObj.low
-	description.textContent = weatherObj.description
+function displayFutureWeather(weatherObj) {
+	const entryDatas = document.querySelectorAll(`.entry__data`);
+	entryDatas[0].textContent = `High: ${weatherObj.high}`
+	entryDatas[1].textContent = `Low: ${weatherObj.low}`
+	entryDatas[2].textContent = weatherObj.description
 }
 
 export { clickHandler, generateBtn };
