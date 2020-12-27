@@ -19,6 +19,7 @@ async function getCoordinates(location) {
         }
     } catch (error) {
         console.log(error);
+        return false;
     }
 
 }

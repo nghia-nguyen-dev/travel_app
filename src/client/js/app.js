@@ -67,7 +67,6 @@ async function clickHandler() {
 	const departure = document.querySelector(`#departure`).value;
 
 	const splitLocation = split(location)
-	console.log(splitLocation);
 
 	const data = { 
 		location: {

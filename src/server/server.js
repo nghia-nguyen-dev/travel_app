@@ -4,6 +4,7 @@ const express = require(`express`);
 const bodyParser = require(`body-parser`);
 const cors = require(`cors`);
 const getCoordinatess = require('./geonames')
+const getImg = require('./pixabay')
 const { getCurrentForecast , getFutureForecast } = require('./weatherbit')
 
 // Object to act as endpoint for all routes
@@ -61,6 +62,15 @@ async function callback(req, res) {
         const { location, currentForecast, dateDiff } = req.body
     
         const coordData = await getCoordinatess(location);
+
+        // Could not get location so send back picture of country
+        if (coordData === false) {
+            // fetch country pic from pixabay API
+            console.log(`hi`);
+            const imgURL = await getImg(location.country);
+            res.send(imgURL);
+        }
+
         const { lng, lat, country } = coordData;
     
         const data = {
@@ -80,6 +90,6 @@ async function callback(req, res) {
         res.send(resForecast);
 
     } catch(error) {
-        console.log(error);
+        res.send(error)
     }
 }
