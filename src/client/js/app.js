@@ -94,9 +94,15 @@ async function clickHandler() {
 		data.dateDiff = dateDiff;
 	}
 
-	const res = await postData("http://localhost:8000/send", data);
-	const json = JSON.parse(res);
-	console.log(json);
+	try {
+		const res = await postData("http://localhost:8000/send", data);
+		const json = JSON.parse(res);
+		console.log(json);
+	} catch(error) {
+		console.log(error);
+	}
+
+
 
 	// // extract temperature
 	// const weatherObject = await JSON.parse(res);

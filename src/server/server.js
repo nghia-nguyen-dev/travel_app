@@ -57,26 +57,29 @@ function sendData(req, res) {
 }
 
 async function callback(req, res) {
-    const { location, currentForecast, dateDiff } = req.body
+    try {
+        const { location, currentForecast, dateDiff } = req.body
     
-    const coordData = await getCoordinatess(location);
-    const { lng, lat, country } = coordData;
-  
-    const data = {
-        lng,
-        lat,
-        dateDiff
+        const coordData = await getCoordinatess(location);
+        const { lng, lat, country } = coordData;
+    
+        const data = {
+            lng,
+            lat,
+            dateDiff
+        }
+
+        let resForecast;
+
+        if (currentForecast) {
+            resForecast = await getCurrentForecast(data);
+        } else {
+            resForecast = await getFutureForecast(data);
+        }
+
+        res.send(resForecast);
+
+    } catch(error) {
+        console.log(error);
     }
-
-    let resForecast;
-
-    if (currentForecast) {
-        // Current
-        resForecast = await getCurrentForecast(data);
-    } else {
-        // Future
-        resForecast = await getFutureForecast(data);
-    }
-
-    res.send(resForecast);
 }
