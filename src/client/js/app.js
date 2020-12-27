@@ -102,49 +102,19 @@ async function clickHandler() {
 	}
 
 
-
-	// // extract temperature
-	// const weatherObject = await JSON.parse(res);
-
-	// // get current date
-	// const td = getCurrentDate();
-
-	// // get user's feeling
-	// const userFeeling = document.querySelector(`#departure`).value;
-
-	// // build object to be sent
-	// const data = {
-	// 	temperature: `${temp}°F`,
-	// 	date: td,
-	// 	userFeeling: userFeeling,
-	// };
-
-	// // send data to server
-	// const post = await postData(`http://localhost:8000/add`, data);
-
-	// // check if post was successful
-	// if (post === `success!`) {
-	// 	updateEntry();
-	// }
 }
 
 /* Event listener */
 generateBtn.addEventListener(`click`, clickHandler);
 
-// Function to update most recent entry using data from server
-async function updateEntry() {
-	const date = document.getElementById(`date`);
-	const temp = document.getElementById(`temp`);
-	const content = document.getElementById(`content`);
+async function displayWeatherInfo(weatherObj) {
+	const highTemp = document.querySelector(`.entry__high-temp`);
+	const lowTemp = document.querySelector(`.entry__high-low`);
+	const description = document.querySelector(`.entry__description`);
 
-	try {
-		const entry = await getData(`http://localhost:8000/retrieve`);
-		date.innerText = entry.date;
-		temp.innerText = entry.temperature;
-		content.innerText = entry.userFeeling;
-	} catch (error) {
-		console.log(`error`, error);
-	}
+	highTemp.textContent = weatherObj.high
+	lowTemp.textContent = weatherObj.low
+	description.textContent = weatherObj.description
 }
 
 export { clickHandler, generateBtn };
