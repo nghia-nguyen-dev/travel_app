@@ -118,17 +118,22 @@ async function clickHandler() {
 generateBtn.addEventListener(`click`, clickHandler);
 
 function displayCurrentWeather(weatherObj) {
-	console.log(weatherObj);
-	const entryDatas = document.querySelectorAll(`.entry__data`);
-	entryDatas[0].textContent = `Temp: ${weatherObj.temp}`
-	entryDatas[1].textContent = weatherObj.description
+	const entry = document.querySelector(`.entry`);
+	const data =`
+	<p><b>Temp:</b> ${weatherObj.temp}</p>
+	<p>${weatherObj.description}</p>
+	`;
+	entry.innerHTML = data;
 }
 
 function displayFutureWeather(weatherObj) {
-	const entryDatas = document.querySelectorAll(`.entry__data`);
-	entryDatas[0].textContent = `High: ${weatherObj.high}`
-	entryDatas[1].textContent = `Low: ${weatherObj.low}`
-	entryDatas[2].textContent = weatherObj.description
+	const entry = document.querySelector(`.entry`);
+	const data =`
+	<p><b>High:</b> ${weatherObj.high}</p>
+	<p><b>Low:</b> ${weatherObj.low}</p>
+	<p>${weatherObj.description}</p>
+	`;
+	entry.innerHTML = data;
 }
 
 function displayImg(imgObj) {

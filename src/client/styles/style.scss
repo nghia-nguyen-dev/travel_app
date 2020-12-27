@@ -34,7 +34,7 @@ h1{
 }
 
 .entry {
-    background: rgba(59, 74, 107, .4);
+    // background: rgba(59, 74, 107, .4);
 }
 
 /*  Basic Styling To Override Default For Basic HTML Elements */
@@ -88,6 +88,7 @@ button {
     h2 {
         font-size: 32px;
         letter-spacing: -0.7px;
+        margin-bottom: 20px;
     }
 }
 
