@@ -5,12 +5,13 @@ async function getImg(country) {
     // Build url string
     const baseURL = `https://pixabay.com/api/`;
     const key = process.env.PIXABAY;
-    const url = `${baseURL}?key=${key}&q=${encodeURIComponent(country)}&image_type=photo`;
+    const numOfImages = 200;
+    const url = `${baseURL}?key=${key}&q=${encodeURIComponent(country)}&image_type=photo&per_page=${numOfImages}`;
 
     try {
         const response = await fetch(url);
         const json = await response.json()
-        //  console.log(json.hits.length);
+         console.log(json.hits.length);
         const index = randomNum(json.hits.length)
         const imgURL = json.hits[index].webformatURL;
         return { imgURL };
