@@ -18,7 +18,7 @@ async function getCoordinates(city) {
             country
         }
     } catch (error) {
-        console.log(error);
+        console.log(`CATCH ERROR: ${error}`);
     }
 
 }

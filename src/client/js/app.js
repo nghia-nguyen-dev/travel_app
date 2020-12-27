@@ -55,29 +55,33 @@ const getData = async (url = "") => {
 async function clickHandler() {
 	const city = document.querySelector(`#city`).value;
 	const departure = document.querySelector(`#departure`).value;
-	// const departure = `12/29/2020`;
-	const userInput = { city, departure };
+
+	const data = { 
+		city,
+		currentForecast: true,
+	};
 
    
     // Check date format
     if (!validateDateFormat(departure)) {
-        return alert(`Date entered must be in the correct format of: MM/DD/YYYY`);
+        return alert(`Date entered must be in the format of: MM/DD/YYYY`);
     }
     
 	// check how far trip date is from today's date
 	const dateDiff = getDateDiff(departure);
    
-	// if results is within a week
-	if (dateDiff <= 7) {
-        // get current weather forecast
-        const res = await postData("http://localhost:8000/current", userInput);
-	} else {
-		// get predicted forecast
+	// Cannot get weather info that is Greater than 16 days in the f
+	if (dateDiff > 16) {
+		alert('Sorry we are not albe to get future weather forecast that is greater than 16 days from today');
+	} else if (dateDiff > 0) {
+		// Get Future forecast
+		data.currentForecast = false;
+		data.dateDiff = dateDiff;
 	}
 
-
-
-
+	const res = await postData("http://localhost:8000/send", data);
+	const json = JSON.parse(res);
+	console.log(json);
 
 	// // extract temperature
 	// const weatherObject = await JSON.parse(res);
