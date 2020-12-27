@@ -96,7 +96,11 @@ async function clickHandler() {
 	try {
 		const res = await postData("http://localhost:8000/send", data);
 		const json = JSON.parse(res);
-		if (data.currentForecast) {
+		console.log(json);
+		if (json.imgURL) {
+			displayImg(json)
+		}
+		else if (data.currentForecast) {
 			displayCurrentWeather(json)
 		} else {
 			displayFutureWeather(json)
@@ -125,6 +129,11 @@ function displayFutureWeather(weatherObj) {
 	entryDatas[0].textContent = `High: ${weatherObj.high}`
 	entryDatas[1].textContent = `Low: ${weatherObj.low}`
 	entryDatas[2].textContent = weatherObj.description
+}
+
+function displayImg(imgObj) {
+	const entry = document.querySelector(`.entry`);
+	entry.innerHTML = `<img src="${imgObj.imgURL}">`
 }
 
 export { clickHandler, generateBtn };

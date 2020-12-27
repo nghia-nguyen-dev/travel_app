@@ -66,7 +66,6 @@ async function callback(req, res) {
         // Could not get location so send back picture of country
         if (coordData === false) {
             // fetch country pic from pixabay API
-            console.log(`hi`);
             const imgURL = await getImg(location.country);
             res.send(imgURL);
         }
