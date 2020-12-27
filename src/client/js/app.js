@@ -21,6 +21,16 @@ function validateDateFormat(date) {
     return results;
 }
 
+function split(str) {
+	if (str.split(', ').length === 2) {
+    	return str.split(', ');
+    } else if (str.split(',').length === 2) {
+    	return str.split(',')
+    } else {
+    	return 'Location is not in the correct format of City, Country'
+    }
+}
+
 /* Main Functions */
 // Post data to server
 const postData = async (url = "", data = {}) => {
@@ -53,15 +63,20 @@ const getData = async (url = "") => {
 };
 
 async function clickHandler() {
-	const city = document.querySelector(`#city`).value;
+	const location = document.querySelector(`#location`).value;
 	const departure = document.querySelector(`#departure`).value;
 
+	const splitLocation = split(location)
+	console.log(splitLocation);
+
 	const data = { 
-		city,
+		location: {
+			city: splitLocation[0],
+			country: splitLocation[1]
+		},
 		currentForecast: true,
 	};
 
-   
     // Check date format
     if (!validateDateFormat(departure)) {
         return alert(`Date entered must be in the format of: MM/DD/YYYY`);

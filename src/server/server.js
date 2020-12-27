@@ -57,12 +57,10 @@ function sendData(req, res) {
 }
 
 async function callback(req, res) {
-    const { city, currentForecast, dateDiff } = req.body
-
-    // Get lng + lat base on city
-    const coordData = await getCoordinatess(city);
+    const { location, currentForecast, dateDiff } = req.body
+    
+    const coordData = await getCoordinatess(location);
     const { lng, lat, country } = coordData;
-    console.log(country);
   
     const data = {
         lng,

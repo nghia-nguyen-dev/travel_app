@@ -2,11 +2,11 @@
 require("dotenv").config();
 const fetch = require("node-fetch");
 
-async function getCoordinates(city) {
+async function getCoordinates(location) {
     // Build url string
     const baseURL = `http://api.geonames.org/searchJSON?`;
     const userName = process.env.userName;
-    const url = `${baseURL}country=US&name_equals=${city}&username=${userName}`;
+    const url = `${baseURL}q=${location.country}&name_equals=${location.city}&username=${userName}`;
 
     try {
         const response = await fetch(url);
@@ -18,7 +18,7 @@ async function getCoordinates(city) {
             country
         }
     } catch (error) {
-        console.log(`CATCH ERROR: ${error}`);
+        console.log(error);
     }
 
 }
