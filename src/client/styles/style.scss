@@ -1,89 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body{
     background: #fffff8;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'DM Sans', sans-serif;
+    padding: 140px 60px;
 }
 
-#app{
+header {
+    margin-bottom: 60px;
+}
+
+main {
+    max-width: 1024px;
+}
+
+h1{
+    font-size: 72px;
+    font-weight: 700;
+    letter-spacing: -2.5px;
+}
+
+.fields {
     display: grid;
-    grid-auto-rows: minmax(150px, auto);
-    /* grid-template-columns:  */
-    height:100vh;
-    background: #f23557;
-    color: #f0d43a;
-    justify-content: center;
-    grid-gap: 1em;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+    gap: 0 30px;
+   
 }
 
-.holder{
-
-}
-
-.entry{
+.entry {
     background: rgba(59, 74, 107, .4);
 }
 
-#entryHolder{
-
-}
-
-#date{
-
-}
-
-#temp{
-
-}
-
-#content{
-
-}
-
-.headline {
-
-}
-.title{
-
-}
-
 /*  Basic Styling To Override Default For Basic HTML Elements */
-label{
+label {
     display:block;
-    font-size: 27px;
+    margin-bottom: 8px;
 }
 
-input{
+input {
     display:block;
     height: 60px;
-    width: 320px;
-    background:#22b2da;
-    color: #f0d43a;
-    font-size: 20px;
+    width: 100%;
+    background:hsl(192, 15%, 94%);
+    padding-left: 16px;
+    font-size: 16px;
     font-family: 'Oswald', sans-serif;
     border: none;
+    border-radius: 6px;
 }
 
-button{
-    width: 400px;
-    height: 100px;
-    background: #3b4a6b;
-    color: #f0d43a;
-    font-size: 26px;
+button {
+    transition: background .35s ease-in, box-shadow .35s ease-in;
+    border-radius: 6px;
+    margin-top: 45px;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    width: 100%;
+    max-width: 497px;
+    height: 85px;
+    background: #6388d8;
+    color:white;
     font-family: 'Oswald', sans-serif;
     border: none;
-    box-shadow: 2px 4px 5px #444;
-}
-h1{
-    font-size: 36px;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 10px 80px rgba(0, 0, 0, 0.12);
+    &:hover {
+        background: #5478c4;
+        box-shadow: none;
+    }
 }
 
-textarea{
-    background:#22b2da;
-    color: #f0d43a;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
+.info {
+    margin-top: 120px;
+    h2 {
+        font-size: 32px;
+        letter-spacing: -0.7px;
+    }
 }
+
+
+
 /* Reset style for HTML element on active to have no border*/
 input:focus,
 select:focus,
@@ -93,19 +102,17 @@ button:focus {
 }
 /* Style for Placeholder Text*/
 ::placeholder { /* Firefox, Chrome, Opera */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
+   
+    font-family: 'DM Sans', sans-serif;
 
 } 
   
 :-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
-
+  
+    font-family: 'DM Sans', sans-serif;
 } 
   
 ::-ms-input-placeholder { /* Microsoft Edge */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
-
+   
+    font-family: 'DM Sans', sans-serif;
 } 
