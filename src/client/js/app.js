@@ -38,7 +38,6 @@ async function clickHandler() {
 	try {
 		const res = await postData("http://localhost:8000/send", data);
 		const json = JSON.parse(res);
-		console.log(json);
 		if (json.imgURL) {
 			displayImg(json)
 		}

@@ -1,4 +1,4 @@
-import {validateDateFormat} from './validateDate'
+const {validateDateFormat} = require('./validateDate')
 
 test(`Return true if date is in mm/dd/yyyy format`, () => {
     

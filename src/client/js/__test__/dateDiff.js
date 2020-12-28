@@ -1,4 +1,4 @@
-import {getCurrentDate} from './getCurrentDate'
+const {getCurrentDate} = require('./getCurrentDate') 
 
 function getDateDiff(date) {
 	const todaysDate = new Date(getCurrentDate());
@@ -8,4 +8,4 @@ function getDateDiff(date) {
 	return diffDays;
 }
 
-export {getDateDiff}
+module.exports = { getDateDiff }

@@ -8,4 +8,4 @@ function split(str) {
     }
 }
 
-export{split}
+module.exports = {split}

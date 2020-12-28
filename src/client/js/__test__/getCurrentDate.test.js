@@ -1,4 +1,4 @@
-import {getCurrentDate} from './getCurrentDate'
+const {getCurrentDate} = require('./getCurrentDate')
 
 test(`Return current date`, () => {
     

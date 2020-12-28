@@ -1,4 +1,4 @@
-import {split} from './split'
+const {split} =  require('./split')
 
 test(`Split a string "city, country" into an array with 2 items`, () => {
     

@@ -4,4 +4,4 @@ function validateDateFormat(date) {
     return results;
 }
 
-export {validateDateFormat}
+module.exports = {validateDateFormat}

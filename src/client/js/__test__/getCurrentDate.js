@@ -3,4 +3,4 @@ function getCurrentDate() {
 	return (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
 }
 
-export {getCurrentDate}
+module.exports = {getCurrentDate}
