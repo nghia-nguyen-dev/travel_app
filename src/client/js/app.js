@@ -8,6 +8,12 @@ async function clickHandler() {
 	const location = document.querySelector(`#location`).value;
 	const departure = document.querySelector(`#departure`).value;
 
+	// Make sure that both inputs are filled out before moving on
+	if (!location || !departure) {
+		console.log(`Both fields must be filled out`);
+		return;
+	}
+
 	const splitLocation = split(location)
 
 	const data = { 
@@ -18,10 +24,10 @@ async function clickHandler() {
 		currentForecast: true,
 	};
 
-	// check how far trip date is from today's date
+	// Check how far trip date is from today's date
 	const dateDiff = getDateDiff(departure);
    
-	// Cannot get weather info that is Greater than 16 days in the f
+	// Cannot get weather info that is Greater than 16 days in the future(due to weatherbit API limit)
 	if (dateDiff > 16) {
 		alert('Sorry we are not albe to get future weather forecast that is greater than 16 days from today');
 	} else if (dateDiff > 0) {
