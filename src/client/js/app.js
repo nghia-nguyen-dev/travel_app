@@ -1,66 +1,8 @@
-/* Global Variables */
+const { getDateDiff, validateDateFormat, split, postData } = require('./helper')
+const { displayCurrentWeather, displayFutureWeather, displayImg } = require('./display')
+
 const generateBtn = document.querySelector(`#generate`);
-
-/* Helper Functions */
-function getCurrentDate() {
-	const d = new Date();
-	return (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
-}
-
-function getDateDiff(date) {
-	const todaysDate = new Date(getCurrentDate());
-	const tripDate = new Date(date);
-	const diffTime = Math.abs(tripDate - todaysDate);
-	const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-	return diffDays;
-}
-
-function validateDateFormat(date) {
-    const testCase = /(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d/;
-    const results = testCase.test(date);
-    return results;
-}
-
-function split(str) {
-	if (str.split(', ').length === 2) {
-    	return str.split(', ');
-    } else if (str.split(',').length === 2) {
-    	return str.split(',')
-    } else {
-    	return 'Location is not in the correct format of City, Country'
-    }
-}
-
-/* Main Functions */
-// Post data to server
-const postData = async (url = "", data = {}) => {
-	const options = {
-		method: "POST",
-		credentials: "same-origin",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		// Body data type must match "Content-Type" header
-		body: JSON.stringify(data),
-	};
-
-	try {
-		const response = await fetch(url, options);
-		return response.text();
-	} catch (error) {
-		console.log(`error`, error);
-	}
-};
-
-// Get data from server
-const getData = async (url = "") => {
-	try {
-		const response = await fetch(url);
-		return response.json();
-	} catch (error) {
-		console.log(`error`, error);
-	}
-};
+generateBtn.addEventListener(`click`, clickHandler);
 
 async function clickHandler() {
 	const location = document.querySelector(`#location`).value;
@@ -110,39 +52,6 @@ async function clickHandler() {
 		console.log(error);
 	}
 
-
-
-}
-
-/* Event listener */
-generateBtn.addEventListener(`click`, clickHandler);
-
-function displayCurrentWeather(weatherObj) {
-	const entry = document.querySelector(`.entry`);
-	const data =`
-	<p><b>Temp:</b> ${weatherObj.temp}</p>
-	<p>${weatherObj.description}</p>
-	`;
-	entry.innerHTML = data;
-}
-
-function displayFutureWeather(weatherObj) {
-	const entry = document.querySelector(`.entry`);
-	const data =`
-	<p><b>High:</b> ${weatherObj.high}</p>
-	<p><b>Low:</b> ${weatherObj.low}</p>
-	<p>${weatherObj.description}</p>
-	`;
-	entry.innerHTML = data;
-}
-
-function displayImg(imgObj) {
-	const entry = document.querySelector(`.entry`);
-	const data =`
-	<p>Sorry we were unable to locate that city in ${imgObj.country}</p>
-	<img src="${imgObj.imgURL}">
-	`;
-	entry.innerHTML = data;
 }
 
 export { clickHandler, generateBtn };
