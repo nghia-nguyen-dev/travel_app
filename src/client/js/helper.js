@@ -1,7 +1,6 @@
 /* Helper Functions */
 function getCurrentDate() {
 	const d = new Date();
-	// return (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
 	return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
 }
 
