@@ -1,6 +1,7 @@
 import { getDateDiff, split, postData } from './helper';
 import { displayCurrentWeather, displayFutureWeather, displayImg } from './display';
 
+
 const generateBtn = document.querySelector(`#generate`);
 generateBtn.addEventListener(`click`, clickHandler);
 
@@ -10,7 +11,7 @@ async function clickHandler() {
 
 	// Make sure that both inputs are filled out before moving on
 	if (!location || !departure) {
-		console.log(`Both fields must be filled out`);
+		alert(`Both fields must be filled out`);
 		return;
 	}
 
