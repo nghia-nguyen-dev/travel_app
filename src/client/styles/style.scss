@@ -10,14 +10,12 @@ body{
     background: #fffff8;
     font-family: 'DM Sans', sans-serif;
     padding: 140px 60px;
+    margin: 0 auto;
+    max-width: 1200px;
 }
 
 header {
-    margin-bottom: 60px;
-}
-
-main {
-    max-width: 1024px;
+    margin-bottom: 80px;
 }
 
 h1{
@@ -33,14 +31,12 @@ h1{
    
 }
 
-.entry {
-    // background: rgba(59, 74, 107, .4);
-}
-
 /*  Basic Styling To Override Default For Basic HTML Elements */
 label {
     display:block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    opacity: .4;
+    font-weight: 700;
 }
 
 input {
@@ -64,7 +60,8 @@ button {
     font-size: 16px;
     font-weight: 700;
     width: 100%;
-    max-width: 497px;
+    min-width: 275px;
+    max-width: 525px;
     height: 85px;
     background: #6388d8;
     color:white;
@@ -84,7 +81,7 @@ button {
 }
 
 .info {
-    margin-top: 120px;
+    margin-top: 100px;
     h2 {
         font-size: 32px;
         letter-spacing: -0.7px;
@@ -92,7 +89,11 @@ button {
     }
 }
 
-
+img {
+    margin-top: 12px;
+    width: 100%;
+    border-radius: 12px;
+}
 
 /* Reset style for HTML element on active to have no border*/
 input:focus,

@@ -138,7 +138,11 @@ function displayFutureWeather(weatherObj) {
 
 function displayImg(imgObj) {
 	const entry = document.querySelector(`.entry`);
-	entry.innerHTML = `<img src="${imgObj.imgURL}">`
+	const data =`
+	<p>Sorry we were unable to locate that city in ${imgObj.country}</p>
+	<img src="${imgObj.imgURL}">
+	`;
+	entry.innerHTML = data;
 }
 
 export { clickHandler, generateBtn };
