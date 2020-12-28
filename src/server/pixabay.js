@@ -14,7 +14,7 @@ async function getImg(country) {
          console.log(json.hits.length);
         const index = randomNum(json.hits.length)
         const imgURL = json.hits[index].webformatURL;
-        return { imgURL };
+        return { imgURL, country };
     } catch (error) {
         console.log(error);
     }

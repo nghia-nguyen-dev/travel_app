@@ -3,30 +3,32 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Weather Journal</title>
+	<title>Travel Planner</title>
 </head>
 
 <body>
-	<div id="app">
-		<h1 class="holder headline">Travel Planner</h1>
-		<div class="holder zip">
-			<label for="location">My trip to:</label>
-			<input type="text" id="location" placeholder="Enter your location">
-		</div>
-		<div class="holder feel">
-			<label for="departure">Departing on:</label>
-			<textarea class="myInput" id="departure" placeholder="MM/DD/YYYY"></textarea>
-			<button id="generate" type="submit"> Generate </button>
-		</div>
-		<div class="holder entry">
-			<div class="title">Most Recent Entry</div>
-			<div class="entry">
-				<p class="entry__data"></p>
-				<p class="entry__data"></p>
-				<p class="entry__data"></p>
+	<header>
+		<h1 class="holder">Travel Planner</h1>
+	</header>
+	<main>
+		<div class="fields">
+			<div class="form-field">
+				<label for="location">My trip to:</label>
+				<input type="text" id="location" name="location" placeholder="city, country">
+			</div>
+			<div class="form-field">
+				<label for="departure">Departing on:</label>
+				<input type="text" id="departure" name="departure" placeholder="mm/dd/yyyy"></input>
 			</div>
 		</div>
-	</div>
+		<button id="generate" type="submit">Submit</button>
+		<div class="info">
+			<h2 class="title">Forecast</h2>
+			<div class="entry">
+
+			</div>
+		</div>
+	</main>
 </body>
 
 </html>
