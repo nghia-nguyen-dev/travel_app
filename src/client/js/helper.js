@@ -28,7 +28,6 @@ function split(str) {
     }
 }
 
-
 const postData = async (url = "", data = {}) => {
 	const options = {
 		method: "POST",
