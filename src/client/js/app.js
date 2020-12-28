@@ -1,5 +1,5 @@
-const { getDateDiff, split, postData } = require('./helper')
-const { displayCurrentWeather, displayFutureWeather, displayImg } = require('./display')
+import { getDateDiff, split, postData } from './helper';
+import { displayCurrentWeather, displayFutureWeather, displayImg } from './display';
 
 const generateBtn = document.querySelector(`#generate`);
 generateBtn.addEventListener(`click`, clickHandler);
