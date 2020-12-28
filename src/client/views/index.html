@@ -12,17 +12,19 @@
 		<h1 class="holder">Travel Planner</h1>
 	</header>
 	<main>
-		<div class="fields">
-			<div class="form-field">
-				<label for="location">My trip to:</label>
-				<input type="text" id="location" name="location" placeholder="city, country" required>
+		<form>
+			<div class="fields">
+				<div class="form-field">
+					<label for="location">My trip to:</label>
+					<input type="text" id="location" name="location" placeholder="city, country" required>
+				</div>
+				<div class="form-field">
+					<label for="departure">Departing on:</label>
+					<input type="date" id="departure" name="departure" required>
+				</div>
 			</div>
-			<div class="form-field">
-				<label for="departure">Departing on:</label>
-				<input type="date" id="departure" name="departure" required>
-			</div>
-		</div>
-		<button id="generate" type="submit">Submit</button>
+			<button id="generate" type="submit">Submit</button>
+		</form>
 		<div class="info">
 			<h2 class="title">Forecast</h2>
 			<div class="entry">
