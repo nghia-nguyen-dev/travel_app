@@ -1,10 +1,6 @@
 import { getDateDiff, split, postData } from './helper';
 import { displayCurrentWeather, displayFutureWeather, displayImg } from './display';
 
-
-const generateBtn = document.querySelector(`#generate`);
-generateBtn.addEventListener(`click`, clickHandler);
-
 async function clickHandler() {
 	const location = document.querySelector(`#location`).value;
 	const departure = document.querySelector(`#departure`).value;
@@ -55,4 +51,4 @@ async function clickHandler() {
 
 }
 
-export { clickHandler, generateBtn };
+export { clickHandler };

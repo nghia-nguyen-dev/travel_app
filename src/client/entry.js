@@ -1,4 +1,7 @@
 import './styles/style.scss'
-import { generateBtn } from './js/app'
+import { clickHandler } from './js/app'
 
-export { generateBtn }
+document.addEventListener('DOMContentLoaded', () => {
+    const generateBtn = document.querySelector(`button`);
+    generateBtn.addEventListener(`click`, clickHandler);
+})
