@@ -1,4 +1,4 @@
-const { getDateDiff, validateDateFormat, split, postData } = require('./helper')
+const { getDateDiff, split, postData } = require('./helper')
 const { displayCurrentWeather, displayFutureWeather, displayImg } = require('./display')
 
 const generateBtn = document.querySelector(`#generate`);
@@ -18,11 +18,6 @@ async function clickHandler() {
 		currentForecast: true,
 	};
 
-    // Check date format
-    if (!validateDateFormat(departure)) {
-        return alert(`Date entered must be in the format of: MM/DD/YYYY`);
-    }
-    
 	// check how far trip date is from today's date
 	const dateDiff = getDateDiff(departure);
    
