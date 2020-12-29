@@ -6,7 +6,7 @@ async function getImg(country) {
     const baseURL = `https://pixabay.com/api/`;
     const key = process.env.PIXABAY;
     const numOfImages = 200;
-    const url = `${baseURL}?key=${key}&q=${encodeURIComponent(country)}&image_type=photo&per_page=${numOfImages}`;
+    const url = `${baseURL}?key=${key}&q=${encodeURIComponent(country)}&image_type=photo&per_page=${numOfImages}&category=places`;
 
     try {
         const response = await fetch(url);
