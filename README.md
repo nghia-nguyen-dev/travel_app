@@ -12,6 +12,7 @@ A travel planner that gets the weather base on input location and date.
     "express": "^4.17.1",
     "node-fetch": "^2.6.1"
   }`
+1. `npm run build-prod` to produce a dist folder
 1. `npm run start` in the command line to start up the server
 1. Open browser and navigate to localhost:8000
 
