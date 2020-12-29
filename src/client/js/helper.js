@@ -41,6 +41,4 @@ const postData = async (url = "", data = {}) => {
 	}
 };
 
-// export { getCurrentDate, getDateDiff, split, postData }
-
-module.exports = { getCurrentDate, getDateDiff, split, postData }
+export { getCurrentDate, getDateDiff, split, postData }
