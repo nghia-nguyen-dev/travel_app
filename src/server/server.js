@@ -58,6 +58,7 @@ function sendData(req, res) {
 }
 
 async function callback(req, res) {
+
     try {
         const { location, currentForecast, dateDiff } = req.body
     

@@ -40,4 +40,4 @@ async function getFutureForecast(obj) {
         }
 }
 
-module.exports = {getCurrentForecast, getFutureForecast};
+module.exports = { getCurrentForecast, getFutureForecast };
