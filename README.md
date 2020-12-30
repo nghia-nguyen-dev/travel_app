@@ -12,7 +12,6 @@ A travel planner that gets the weather base on input location and date.
     "express": "^4.17.1",
     "node-fetch": "^2.6.1"
   }`
-1. `npm run build-prod` to produce a dist folder
 1. `npm run start` in the command line to start up the server
 1. Open browser and navigate to localhost:8000
 
@@ -23,7 +22,7 @@ A travel planner that gets the weather base on input location and date.
 1. Data will populate under __Forecast__
     - Current date: will display temp + weather description
     - Future date: will display high + low temp + weather description
-- __IMPORTANT!!!__ If the city can't be found, a message with an image of the country will display instead of weather info
+- __IMPORTANT!!!__ If the city cannot be found, a message and a random image of the country will display instead.
 
 ## Limitation
 
@@ -36,6 +35,7 @@ A travel planner that gets the weather base on input location and date.
 - javascript
 - Webpack
 - node.js
+- express
 
 ## APIs
 
