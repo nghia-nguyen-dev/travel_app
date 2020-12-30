@@ -12,6 +12,8 @@ A travel planner that gets the weather base on input location and date.
     "express": "^4.17.1",
     "node-fetch": "^2.6.1"
   }`
+1. Create a .env file at the root level and add API keys for
+`userName=<Geonames key> PIXABAY=<pixabay key> API_KEY=<weatherbit key>`
 1. `npm run start` in the command line to start up the server
 1. Open browser and navigate to localhost:8000
 
@@ -27,6 +29,8 @@ A travel planner that gets the weather base on input location and date.
 ## Limitation
 
 - Can only get weather info that is within 16 days in the future (*this is due to the Weatherbit API*)
+
+- Cannot get past weather info
 
 ## Tech
 
