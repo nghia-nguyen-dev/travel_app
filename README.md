@@ -5,15 +5,9 @@ A travel planner that gets the weather base on input location and date.
 ## Installation
 
 1. Make sure you have npm installed
-1. Install these `"dependencies": {
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "node-fetch": "^2.6.1"
-  }`
+1. Run npm install
 1. Create a .env file at the root level and add API keys for
-`userName=<Geonames key> PIXABAY=<pixabay key> API_KEY=<weatherbit key>`
+`userName=<Geonames_key> PIXABAY=<pixabay_key> API_KEY=<weatherbit_key>`
 1. `npm run start` in the command line to start up the server
 1. Open browser and navigate to localhost:8000
 
